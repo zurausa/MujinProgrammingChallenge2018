@@ -1,193 +1,22 @@
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.NoSuchElementException;
 
 public class Main {
-	private static  boolean[][] map;
-	private static int row;
-	private static int col;
-	private static char ch = ".".charAt(0);
+
 
 	public static void main(String[] args){
 		FastScanner sc = new FastScanner();
-		row = sc.nextInt();
-		col = sc.nextInt();
-		map = new boolean[row][col];
-		for(int i=0;i<row;i++){
-			String line = sc.next();
-			for(int j=0;j<col;j++){
-				if(line.charAt(j) == ch){
-					map[i][j] = true;
-				} else {
-					map[i][j] = false;
-				}
-			}
-		}
-		int count = 0;
-		for(int i=0;i<row;i++){
-			for(int j=0;j<col;j++){
-				if(!map[i][j]){
-					continue;
-				}else{
-//					//to top
-//					count += countToTop(i, j);
-//					//to right
-//					count += countToRight(i, j);
-//					//to under
-//					count += countToBottom(i, j);
-//					//to left
-//					count += countToLeft(i, j);
-					count += checkBlank(i,j);
-				}
-			}
-		}
-		System.out.println(count);
+		PrintWriter out = new PrintWriter(System.out);
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		int K = sc.nextInt();
+		char[] d = sc.next().toCharArray();
 	}
-
-	/**
-	 * 指定箇所を交差点とした時の取ることができる終着点を計算
-	 **/
-	private static int checkBlank(int x,int y){
-		int height = 0;
-		int width = 0;
-		//check to up
-		for(int i = x-1; i >= 0; i-- ){
-			if(map[i][y]){
-				height++;
-			}else{
-				break;
-			}
-		}
-		//check to down;
-		for(int i = x+1; i < row; i++ ){
-			if(map[i][y]){
-				height++;
-			}else{
-				break;
-			}
-		}
-		// check to left;
-		for (int i = y-1; i >= 0; i--) {
-			if (map[x][i]) {
-				width++;
-			} else {
-				break;
-			}
-		}
-		// check to left;
-		for (int i = y+1; i < col; i++) {
-			if (map[x][i]) {
-				width++;
-			} else {
-				break;
-			}
-		}
-		return height * width;
-	}
-
-
-//	private static int countToTop(int i,int j){
-//		int count = 0;
-//		int positionY = i-1;
-//		int positionX;
-//		if(j+1<col){
-//			while(positionY >= 0){
-//				positionX = j+1;
-//				if(map[positionY][j]){
-//					while(positionX < col){
-//						if(map[positionY][positionX]){
-//							count++;
-//							positionX++;
-//						}else{
-//							break;
-//						}
-//					}
-//				}else{
-//					break;
-//				}
-//				positionY--;
-//			}
-//		}
-//		return count;
-//	}
-//
-//	private static int countToRight(int i,int j){
-//		int count = 0;
-//		int positionY;
-//		int positionX = j+1;
-//		if(i+1<row){
-//			while(positionX < col){
-//				positionY = i+1;
-//				if(map[i][positionX]){
-//					while(positionY < row){
-//						if(map[positionY][positionX]){
-//							count++;
-//							positionY++;
-//						}else{
-//							break;
-//						}
-//					}
-//				}else{
-//					break;
-//				}
-//				positionX++;
-//			}
-//		}
-//		return count;
-//	}
-//
-//	private static int countToBottom(int i,int j){
-//		int count = 0;
-//		int positionY = i+1;
-//		int positionX;
-//		if(j>0){
-//			while(positionY < row){
-//				positionX = j - 1;
-//				if(map[positionY][j]){
-//					while(positionX >= 0){
-//						if(map[positionY][positionX]){
-//							count++;
-//							positionX--;
-//						}else{
-//							break;
-//						}
-//					}
-//				}else{
-//					break;
-//				}
-//				positionY++;
-//			}
-//		}
-//		return count;
-//	}
-//
-//	private static int countToLeft(int i,int j){
-//		int count = 0;
-//		int positionY;
-//		int positionX = j-1;
-//		if(i>0){
-//			while(positionX >= 0){
-//				positionY = i -1;
-//				if(map[i][positionX]){
-//					while(positionY >= 0){
-//						if(map[positionY][positionX]){
-//							positionY--;
-//							count++;
-//						}else{
-//							break;
-//						}
-//					}
-//				}else{
-//					break;
-//				}
-//				positionX--;
-//			}
-//		}
-//		return count;
-//	}
-
 
 }
+
 class FastScanner {
     private final InputStream in = System.in;
     private final byte[] buffer = new byte[1024];
